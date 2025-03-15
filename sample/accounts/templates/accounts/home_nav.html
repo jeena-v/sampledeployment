@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Navbar</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #333;
+            padding: 0.5em 1em;
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5em 1em;
+        }
+        .navbar a:hover {
+            background-color: #575757;
+            border-radius: 4px;
+        }
+        .navbar .logo {
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+        .navbar .menu {
+            display: flex;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">MySite</div>
+        <div class="menu">
+            <h1>Welcome to the Homepage!</h1>
+            <a href="{% url 'home' %}">Home</a>
+           
+
+            {% if user.is_authenticated %}
+            <p>Hello, {{ user.username }}!</p>
+            
+            <a href="{% url 'logout' %}">Logout</a>
+        {% else %}
+        <p>You are not logged in.</p>
+        <a href="{% url 'login' %}">Login</a> 
+        <a href="{% url 'register' %}">Register</a>
+    {% endif %}
+        </div>
+    </div>
+</body>
+</html>
+
